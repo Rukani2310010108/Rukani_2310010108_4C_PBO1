@@ -188,5 +188,5 @@ try {
 
 ## Pembuat
 
-Nama: Muhammad Edya Rosadi
-NPM: 2110010001
+Nama: Rukani
+NPM: 2310010108
