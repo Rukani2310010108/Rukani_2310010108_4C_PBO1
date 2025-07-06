@@ -1,64 +1,128 @@
-## 🩺 Manajemen Data Dokter - UAS PBO1
+# Proyek Akhir Pemrograman Berbasis Objek 1
 
-Proyek ini adalah contoh sederhana aplikasi **pengolahan data dokter** menggunakan bahasa pemrograman Java. Proyek ini dibuat sebagai tugas Ujian Akhir Semester mata kuliah **Pemrograman Berorientasi Objek 1 (PBO1)**, dibimbing oleh **Bapak Muhammad Edya Rosadi**.
+Proyek ini adalah contoh sederhana aplikasi pengolahan data dokter menggunakan Java sebagai tugas akhir dari mata kuliah pemrograman berbasis objek 1.
 
----
+## Deskripsi
 
-## 📌 Deskripsi
+Aplikasi ini menerima input berupa data dokter, baik dokter umum maupun dokter spesialis. Output yang diberikan berupa informasi lengkap dari setiap dokter, termasuk status berdasarkan tahun masuk dan pencarian berdasarkan spesialisasi.
 
-Aplikasi ini menerima input dari pengguna berupa data dokter seperti:
-- Nama
-- Jabatan
-- Nomor SIP (Surat Izin Praktik)
-- Tempat kerja
-- Tahun masuk
-- Spesialisasi (khusus untuk dokter spesialis)
+Aplikasi ini mengimplementasikan beberapa konsep penting dalam pemrograman berorientasi objek (OOP) seperti Class, Object, Atribut, Method Constructor, Method Mutator, Method Accessor, Encapsulation, Inheritance, Overloading, Overriding, Seleksi, Perulangan, IO Sederhana, ArrayList, dan Error Handling.
 
-Output dari program berupa tampilan informasi dokter dalam format yang terstruktur.
+## Penjelasan Kode
 
----
+1. **Class** adalah template atau blueprint dari object. Pada kode ini, `Dokter`, `DokterSpesialis`, dan `Dokterpenanganan` adalah contoh dari class.
 
-## 🧠 Konsep OOP yang Digunakan
+```java
+public class Dokter { ... }
+public class DokterSpesialis extends Dokter { ... }
+public class Dokterpenanganan { ... }
 
-Aplikasi ini mengimplementasikan **konsep dasar OOP (Object-Oriented Programming)** seperti:
+    bject adalah instance dari class. Contoh pembuatan object:
 
-- ✅ Class & Object  
-- ✅ Attribute & Method  
-- ✅ Constructor  
-- ✅ Setter (Mutator) dan Getter (Accessor)  
-- ✅ Inheritance (Pewarisan class)  
-- ✅ Polymorphism (Overriding dan Overloading)  
-- ✅ Array  
-- ✅ Perulangan  
-- ✅ Scanner (Input pengguna)  
-- ✅ Try-Catch (Error Handling)  
+Dokter d = new Dokter("Rukani", "Umum", "12345", "RS Banjarbaru", 2017);
 
----
+    Atribut adalah variabel yang ada dalam class. Contohnya:
 
-## 🔍 Penjelasan Kode
+private String nama;
+private String jabatan;
 
-Berikut bagian kode dan penjelasan fitur OOP:
+    Constructor adalah method yang pertama kali dijalankan pada saat pembuatan object.
 
-### 1. `Class Dokter`
-Class ini memiliki atribut private seperti `nama`, `jabatan`, `sip`, `tempatKerja`, dan `tahunMasuk`.  
-Dilengkapi dengan constructor, getter, dan setter.
+public Dokter(String nama, String jabatan, String sip, String tempatKerja, int tahunMasuk) {
+    this.nama = nama;
+    ...
+}
 
-### 2. `Class DokterSpesialis`
-Merupakan class turunan dari `Dokter` yang menambahkan atribut `spesialisasi`, dan menimpa method dari class induk (`Overriding`).
+    Mutator atau setter digunakan untuk mengubah nilai dari suatu atribut.
 
-### 3. `Polymorphism`
-- **Overriding:** Method `penangananPasien()` diubah di class `DokterSpesialis`
-- **Overloading:** Method `displayInfo()` dibuat dalam dua versi (dengan dan tanpa parameter tambahan)
+public void setNama(String nama) {
+    this.nama = nama;
+}
 
-### 4. `Array dan Looping`
-Beberapa objek dokter disimpan dalam array, lalu ditampilkan menggunakan perulangan `for`.
+    Accessor atau getter digunakan untuk mengambil nilai dari suatu atribut.
 
-### 5. `Scanner`
-Menggunakan `Scanner` untuk mengambil input dari user melalui terminal.
+public String getNama() {
+    return nama;
+}
 
-### 6. `Try-Catch`
-Blok `try-catch` digunakan untuk menangani kesalahan input, misalnya ketika tahun masuk harus berupa angka.
+    Encapsulation adalah konsep menyembunyikan data dengan membuat atribut menjadi private dan hanya bisa diakses melalui method.
 
----
+private String sip; // hanya bisa diakses via getter/setter
 
-## 📁 Struktur Folder (Opsional)
+    Inheritance adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain.
+
+public class DokterSpesialis extends Dokter {
+    ...
+}
+
+    Polymorphism terdiri dari Overriding dan Overloading.
+
+// Overriding
+@Override
+public String displayInfo() {
+    return super.displayInfo() + "\nSpesialisasi : " + spesialisasi;
+}
+
+// Overloading
+public String displayInfo(boolean tampilStatus) {
+    String info = displayInfo();
+    if (tampilStatus) {
+        info += "\nStatus Dokter : " + statusDokter();
+    }
+    return info;
+}
+
+    Seleksi digunakan untuk menentukan status dokter berdasarkan tahun masuk.
+
+if (tahunMasuk < 2015) return "Dokter Senior";
+else if (tahunMasuk < 2020) return "Dokter Madya";
+else return "Dokter Baru";
+
+    Perulangan digunakan untuk input data dokter secara berulang.
+
+for (int i = 0; i < jumlah; i++) {
+    System.out.println("Data Dokter ke-" + (i + 1));
+    ...
+}
+
+    IO Sederhana digunakan untuk menerima input dari user dan menampilkan output.
+
+Scanner input = new Scanner(System.in);
+System.out.print("Masukkan Nama Dokter: ");
+String nama = input.nextLine();
+
+    ArrayList digunakan untuk menyimpan list dinamis dari objek dokter.
+
+ArrayList<Dokter> daftarDokter = new ArrayList<>();
+
+    Error Handling digunakan untuk menangani input yang salah.
+
+try {
+    tahunMasuk = input.nextInt();
+} catch (InputMismatchException e) {
+    System.out.println("Input harus berupa angka!");
+    input.nextLine();
+}
+
+Usulan nilai
+No	Materi	Nilai
+1	Class	5
+2	Object	5
+3	Atribut	5
+4	Constructor	5
+5	Mutator	5
+6	Accessor	5
+7	Encapsulation	5
+8	Inheritance	5
+9	Polymorphism	10
+10	Seleksi	5
+11	Perulangan	5
+12	IO Sederhana	10
+13	ArrayList	10
+14	Error Handling	15
+	TOTAL	100
+Pembuat
+
+Nama: Rukani
+NPM/ 2310010108
+Dosen/Guru Pembimbing: Bapak Muhammad Edya Rosadi
